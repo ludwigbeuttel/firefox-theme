@@ -1,0 +1,87 @@
+@import url("popup-search.css");
+@import url("sidebar.css");
+
+#TabsToolbar {
+  display: none;
+}
+
+#sidebar-header {
+  display: none;
+}
+
+:root {
+  --uc-tweak-rounded-corners-padding: 2px;
+  --uc-tweak-rounded-corners-radius: 6px;
+}
+
+:root #sidebar-box {
+  --uc-sidebar-hover-width: 300px !important;
+}
+
+#nav-bar,
+#nav-bar .urlbarView-body-outer {
+  background: unset !important;
+  background-color: var(
+    --lwt-accent-color,
+    --gnome-headerbar-background
+  ) !important;
+  transition: background-color 0.2s ease-in-out !important;
+}
+
+* {
+  font-family: "Inter Variable", "Inter" !important;
+  color: --lwt-tab-text !important;
+}
+
+:is(
+    .webextension-browser-action,
+    .eom-addon-button
+  )[data-extensionid="userchrome-toggle@joolee.nl"]
+  .toolbarbutton-icon {
+  list-style-image: url("firefox-gnome-theme/theme/icons/toggle-sidebar-symbolic.svg") !important;
+}
+
+#urlbar .urlbar-page-action:not([hidden]) {
+  display: grid;
+  place-items: center;
+}
+
+#urlbar[open] .urlbarView,
+#urlbar[open] .urlbarView-body-outer {
+  border-radius: 0 0 6px 6px !important;
+}
+
+#urlbar .search-one-offs {
+  display: none !important;
+}
+
+#urlbar .urlbarView-body-outer {
+  outline-color: var(--lwt-accent-color) !important;
+  color: var(--lwt-text-color) !important;
+}
+
+#urlbar
+  :is(#translations-button, #shopping-sidebar-button, #reader-mode-button) {
+  display: none !important;
+}
+
+#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+  border-radius: 6px 6px 0 0 !important;
+  outline: none !important;
+
+  .urlbarView {
+    margin-top: -18px !important;
+    margin-left: -7px !important;
+    border-radius: 0 0 6px 6px !important;
+    width: calc(100% + 2px) !important;
+  }
+}
+
+#urlbar[breakout][breakout-extend][pageproxystate="invalid"]:not([usertyping]) {
+  #urlbar-input-container {
+  margin-top: 10px !important;
+  }
+  .urlbarView {
+    margin-top: -8px !important;
+  }
+}

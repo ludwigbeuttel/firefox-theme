@@ -5,6 +5,12 @@
   display: none;
 }
 
+#sidebar {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 #sidebar-header {
   display: none;
 }
@@ -16,7 +22,8 @@
   --gnome-toolbar-icon-fill: var(--lwt-text-color) !important;
   --gnome-window-color: var(--lwt-text-color) !important;
   --gnome-menu-background: var(--lwt-accent-color) !important;
-
+  --gnome-toolbar-background: var(--lwt-accent-color) !important;
+  --gnome-toolbar-border-color: var(--lwt-accent-color) !important;
 }
 
 :root #sidebar-box {
@@ -91,3 +98,30 @@
   }
 }
 
+#sidebar-box:hover::before {
+display: none !important;
+}
+
+#sidebar-box::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+
+  top: 0px;
+  left: var(--uc-sidebar-hover-width);
+
+  height: 15px;
+  width: 65px;
+  border-top-left-radius: 0;
+  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
+
+  transition-property: border-radius !important;
+  transition-duration: 200ms !important;
+  transition-timing-function: ease-in-out !important;
+  pointer-events: none;
+}
+
+#main-window[titlepreface*="|| "] #sidebar-box::after,
+#sidebar-box:hover::after {
+  border-top-left-radius: var(--uc-tweak-rounded-corners-radius) !important;
+}

@@ -12,6 +12,11 @@
 :root {
   --uc-tweak-rounded-corners-padding: 2px;
   --uc-tweak-rounded-corners-radius: 6px;
+  --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+  --gnome-toolbar-icon-fill: var(--lwt-text-color) !important;
+  --gnome-window-color: var(--lwt-text-color) !important;
+  --gnome-menu-background: var(--lwt-accent-color) !important;
+
 }
 
 :root #sidebar-box {
@@ -38,7 +43,7 @@
     .eom-addon-button
   )[data-extensionid="userchrome-toggle@joolee.nl"]
   .toolbarbutton-icon {
-  list-style-image: url("firefox-gnome-theme/theme/icons/toggle-sidebar-symbolic.svg") !important;
+  list-style-image: url("../theme/icons/toggle-sidebar-symbolic.svg") !important;
 }
 
 #urlbar .urlbar-page-action:not([hidden]) {
@@ -85,3 +90,4 @@
     margin-top: -8px !important;
   }
 }
+

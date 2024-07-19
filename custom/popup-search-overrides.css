@@ -1,0 +1,44 @@
+#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+  --urlbar-block-padding: 4px !important;
+  --urlbar-inline-padding: 4px !important;
+  --urlbar-height: auto !important;
+  --urlbar-min-height: 44px !important;
+
+  background-color: var(--lwt-accent-color, --gnome-menu-background) !important;
+
+  transition-property: background-color, top, opacity, scale, border-radius !important;
+  transition-duration: var(--ltw-transition-duration), 0.2s !important;
+  transition-timing-function: var(--lwt-transition-type), ease-in-out important;
+
+  @starting-style {
+    top: 4px !important;
+    opacity: 0 !important;
+    scale: 0.8 !important;
+  }
+
+  #urlbar-background {
+    background-color: var(--gnome-entry-background) !important;
+  }
+
+  & > #urlbar-input-container {
+    transform: translateY(-15px);
+  }
+}
+
+#nav-bar:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+
+  width: 100vw;
+  height: 100vh;
+
+  top: 0px;
+  left: 0px;
+
+  background-color: #000000 !important;
+  backdrop-filter: blur(300px);
+  opacity: 0;
+
+  transition: opacity 0.2s ease-in-out;
+}

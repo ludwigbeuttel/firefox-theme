@@ -1,0 +1,209 @@
+/* PINNED TABS */
+
+/* Control how much pinned tabs column you want below, width of the pinned tabs will be automatically resized depend on it. */
+#root.root {--pinned-tabs-col: 3;}
+#root.root {--tabs-pinned-width: calc( (96vw - (var(--tabs-margin)*var(--pinned-tabs-col))) / var(--pinned-tabs-col));}
+#root.root {--tabs-pinned-height: 42px;}
+
+.Tab[data-pin="true"] .body {
+	box-shadow: 0px 2px 1px #00000000;
+  background: #f2f2f250;
+  color: #ffffff20;
+}
+.Tab[data-pin="true"][data-active="true"]{
+  background-color: #ffffff60;
+  border-radius: calc(var(--general-border-radius) + 2px);
+}
+
+/* GENERAL */
+
+#root.root {
+  --tabs-height: 35px;
+  --tabs-margin: 8px;
+  --tabs-indent: 0;
+  padding-top: 6px;
+  --tabs-close-btn-margin: 5px;
+  --tabs-inner-gap: 10px;
+  --general-border-radius: 6px;
+}
+#root .popup-container {background-color: transparent;}
+#root .hidden-panels-popup-layer:before {background-color: transparent;}
+
+#root {
+  transition: background-color 200ms ease-in-out;
+  font-size: 13.3333px;
+}
+
+/* Smoothen masking for overflowed tab title. */
+.Tab .title {
+	background: linear-gradient(90deg, var(--tabs-normal-fg) 80%, #f1f1f100 99%);
+	background-clip: text;
+	color: transparent;
+}
+
+/* Uncomment this to apply Segoe UI Variable font - Make sure to install the font first */
+#root.root {--tabs-font: 1em Inter Variable, Inter;}
+
+.Tab {
+  transition: background-color .2s linear;
+}
+
+.Tab .body::before {
+	transition: background-color 200ms ease-in-out;
+}
+
+.Tab[data-active:true] .body::before,
+.Tab:hover .body::before {
+  background-color: color-mix(in hsl longer hue, currentColor 20%, transparent) !important;
+}
+
+.Tab[data-active:true]:hover .body::before {
+  background-color: color-mix(in hsl longer hue, currentColor 30%, transparent) !important;
+}
+
+.Tab .body {
+  box-shadow: none !important;
+}
+
+.Tab .close {
+	border-radius: 12px;
+  transition-property: background-color, opacity;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+}
+
+.Tab .close-icon {
+appearance:none
+	fill: transparent;
+  background-color: currentColor;
+  width: 16px;
+  height: 16px;
+  transform: translateX(1px) translateY(1px);
+  mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTQgNGgxLjAzMWMuMjU1LjAxMS41MS4xMjkuNjg4LjMxM0w4IDYuNTkybDIuMzEyLTIuMjhjLjI2Ni0uMjMxLjQ0Ny0uMzA2LjY4OC0uMzEzaDF2MWMwIC4yODYtLjAzNC41NS0uMjUuNzVMOS40NjkgOC4wMzFsMi4yNSAyLjI1Yy4xODguMTg4LjI4MS40NTQuMjgxLjcxOXYxaC0xYy0uMjY1IDAtLjUzLS4wOTMtLjcxOS0uMjgxTDggOS40MzhsLTIuMjgxIDIuMjhBMS4wMTUgMS4wMTUgMCAwMTUgMTJINHYtMWMwLS4yNjUuMDkzLS41My4yODEtLjcxOWwyLjI4MS0yLjI1LTIuMjgtMi4yODFBLjkwOS45MDkgMCAwMTQgNXoiIHN0eWxlPSJsaW5lLWhlaWdodDpub3JtYWw7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonQW5kYWxlIE1vbm8nO3RleHQtaW5kZW50OjA7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWRlY29yYXRpb24tbGluZTpub25lO3RleHQtdHJhbnNmb3JtOm5vbmU7bWFya2VyOm5vbmUiIGNvbG9yPSIjYmViZWJlIiBmb250LXdlaWdodD0iNDAwIiBmb250LWZhbWlseT0iQW5kYWxlIE1vbm8iIG92ZXJmbG93PSJ2aXNpYmxlIiBmaWxsPSJjb250ZXh0LWZpbGwiIHN0cm9rZT0iY29udGV4dC1zdHJva2UiIGZpbGwtb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiIHN0cm9rZS1vcGFjaXR5PSJjb250ZXh0LXN0cm9rZS1vcGFjaXR5Ii8+PC9zdmc+");
+}
+
+
+/* NEW TAB BUTTON*/
+
+.TabsPanel .new-tab-btns{
+  position: relative;
+  padding-top: 5px;
+}
+
+.TabsPanel .new-tab-btn {
+  justify-content: left;
+  padding-left: calc(var(--tabs-inner-gap));
+  margin-left: calc(var(--tabs-margin)*0.6);
+  margin-right: calc(var(--tabs-margin)*0.6);
+  --ntb-btn-height: 37px;
+}
+
+.TabsPanel .new-tab-btn > svg, .TabsPanel .new-tab-btn > img {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  opacity: 40%;
+  width: 16px;
+  height: 16px;
+  mask: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcgMXY2SDF2Mmg2djZoMlY5aDZWN0g5VjF6bTAgMCIgZmlsbD0iY29udGV4dC1maWxsIiBzdHJva2U9ImNvbnRleHQtc3Ryb2tlIiBmaWxsLW9wYWNpdHk9ImNvbnRleHQtZmlsbC1vcGFjaXR5IiBzdHJva2Utb3BhY2l0eT0iY29udGV4dC1zdHJva2Utb3BhY2l0eSIvPjwvc3ZnPg==");
+}
+
+.TabsPanel .new-tab-btn:after {
+  justify-content: left;
+  content: "Neuen Tab öffnen";
+  font: var(--tabs-font);
+  padding-left: calc(var(--tabs-inner-gap) + var(--tabs-margin) + 12px);
+  color: var(--nav-btn-fg);  
+  opacity: 40%;
+}
+
+/* NAVBAR */
+
+#root.root {--nav-btn-width: 25px;}
+#root.root {--nav-btn-height: 25px;}
+#root.root {--nav-btn-margin: 2px;}
+#root.root {--toolbar-bg: transparent;}
+
+/* Moving Sidebery navigation bar to bottom, to mimic how Space works on Arc Browser. Make sure to choose Horizontal when activating the navigation bar. */
+.NavigationBar {box-shadow: none;}
+.top-horizontal-box {
+  display: flex;
+  order: 1; 
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+/* Remove background color, border and shadow for active tab panel. */
+.NavigationBar .nav-item[data-active="true"] {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Making non-active tabs (including bookmark panels) grayscale. */
+.NavigationBar .nav-item[data-type="tabs"][data-active="false"] .icon {
+  fill: var(--nav-btn-fg);
+  opacity: 40%;
+  scale: 0.75;
+}
+
+/* Settings related to Hidden Panels icon and popup layer, adapting to the flipped navbar orientation. */
+#hidden_panels_btn.nav-item .icon {
+  transform: scaleY(-1);
+  opacity: 40%;
+  scale: 0.9;
+}
+.hidden-panels-popup-layer {
+  transform: scaleY(-1);  
+  margin-top: -15%;
+  --toolbar-bg: var(--frame-bg);
+}
+.NavigationBar .hidden-panels-popup-content {
+  transform: scaleY(-1);
+}
+
+/* Adjust 'add tabs panel' size & position. */
+#root .PanelConfigPopup .popup {
+  width: 80vw;
+  margin-top: 25vh;
+}
+
+.new-tab-btn::before,
+.NavigationBar .nav-item {
+  transition: background-color 200ms linear;
+}
+
+/* Replacing 'bookmarks' button with gnome icon */
+.NavigationBar .nav-item[data-type="bookmarks"] .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  width: 16px;
+  height: 16px;
+  mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTYiIHdpZHRoPSIxNiI+PHBhdGggZmlsbD0iY29udGV4dC1maWxsIiBzdHJva2U9ImNvbnRleHQtc3Ryb2tlIiBmaWxsLW9wYWNpdHk9ImNvbnRleHQtZmlsbC1vcGFjaXR5IiBzdHJva2Utb3BhY2l0eT0iY29udGV4dC1zdHJva2Utb3BhY2l0eSIgZD0iTTggMGExIDEgMCAwMC0uOTUuNjg0bC0xLjQ0OCA0LjM0LTQuNTktLjAxNkMuMDMyIDUuMDA0LS4zNzEgNi4yNjYuNDMgNi44MjhsMy42MjUgMi41NTUtMS41IDQuMjg1Yy0uMzE3LjkwMi42ODcgMS42OTEgMS40OTIgMS4xNzJsNC4wMDQtMi41OTQgMy44OTQgMi41ODZjLjgwMS41MzEgMS44MTctLjI1OCAxLjUtMS4xNmwtMS41MDQtNC4yOSAzLjY0NS0yLjU3N2MuNzg5LS41NjMuMzk0LTEuODA5LS41NzQtMS44MTNsLTQuNjYtLjAxNUw4Ljk0OS42OUExLjAwNCAxLjAwNCAwIDAwOCAwem0wIDAiLz48L3N2Zz4=");
+}
+
+/* Replacing 'add tabs panel' button with gnome icon */
+.NavigationBar #add_tp.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  width: 16px;
+  height: 16px;
+  mask: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcgMXY2SDF2Mmg2djZoMlY5aDZWN0g5VjF6bTAgMCIgZmlsbD0iY29udGV4dC1maWxsIiBzdHJva2U9ImNvbnRleHQtc3Ryb2tlIiBmaWxsLW9wYWNpdHk9ImNvbnRleHQtZmlsbC1vcGFjaXR5IiBzdHJva2Utb3BhY2l0eT0iY29udGV4dC1zdHJva2Utb3BhY2l0eSIvPjwvc3ZnPg==");
+}
+
+/* Replacing 'history' panel with gnome icon */
+.NavigationBar #navhistory.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  width: 16px;
+  height: 16px;
+  mask: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY29sb3I9IiMwMDAiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmaWxsPSJjb250ZXh0LWZpbGwiIHN0cm9rZT0iY29udGV4dC1zdHJva2UiIGZpbGwtb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiIHN0cm9rZS1vcGFjaXR5PSJjb250ZXh0LXN0cm9rZS1vcGFjaXR5Ij48cGF0aCBkPSJNOCAwQzMuNTk0IDAgMCAzLjU5NCAwIDhzMy41OTQgOCA4IDggOC0zLjU5NCA4LTgtMy41OTQtOC04LTh6bTAgMmMzLjMyNCAwIDYgMi42NzIgNiA2IDAgMy4zMjQtMi42NzYgNi02IDZzLTYtMi42NzYtNi02YzAtMy4zMjggMi42NzYtNiA2LTZ6bTAgMCIvPjxwYXRoIGQ9Ik00LjkzIDQuOTUzYS41MjYuNTI2IDAgMDAtLjM1Mi4xNTIuNTAzLjUwMyAwIDAwLjAwOC43MDdsMy4xMTMgMy4wNDNhLjQ5LjQ5IDAgMDAuMzg3LjEzSDExYS41MDEuNTAxIDAgMDAwLTFIOC4yMzhMNS4yODUgNS4wOTdhLjUwMi41MDIgMCAwMC0uMzU1LS4xNDV6bTAgMCIvPjwvZz48L3N2Zz4=");
+}
+
+/* Replacing 'settings' with gnome icon */
+.NavigationBar #settings.nav-item .icon {
+  fill: transparent;
+  background-color: var(--nav-btn-fg);
+  width: 16px;
+  height: 16px;
+  mask: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNTAyIDEuMDE5YS45OTYuOTk2IDAgMDAtLjk5OC45OTh2LjQ1MWE1LjczNCA1LjczNCAwIDAwLTEuMzU2LjU2NmwtLjMyMi0uMzIyYS45OTUuOTk1IDAgMDAtMS40MSAwbC0uNzA1LjcwNWEuOTk1Ljk5NSAwIDAwMCAxLjQxbC4zMi4zMmE1LjczNCA1LjczNCAwIDAwLS41NiAxLjM1OGgtLjQ1NGEuOTk1Ljk5NSAwIDAwLS45OTguOTk2VjguNWMwIC41NTMuNDQ2Ljk5Ni45OTguOTk2aC40NWE1LjczNCA1LjczNCAwIDAwLjU2NiAxLjM1NmwtLjMyMi4zMjJhLjk5NS45OTUgMCAwMDAgMS40MWwuNzA1LjcwNWMuMzkuMzkxIDEuMDIuMzkxIDEuNDEgMGwuMzItLjMyYTUuNzM0IDUuNzM0IDAgMDAxLjM1OC41NnYuNDU2YzAgLjU1Mi40NDUuOTk2Ljk5OC45OTZoLjk5NmEuOTk1Ljk5NSAwIDAwLjk5OC0uOTk2di0uNDUxYTUuNzM0IDUuNzM0IDAgMDAxLjM1NS0uNTY3bC4zMjMuMzIyYy4zOS4zOTEgMS4wMi4zOTEgMS40MSAwbC43MDUtLjcwNWEuOTk1Ljk5NSAwIDAwMC0xLjQxbC0uMzItLjMyYTUuNzM0IDUuNzM0IDAgMDAuNTYtMS4zNThoLjQ1M2EuOTk1Ljk5NSAwIDAwLjk5OC0uOTk2di0uOTk4YS45OTUuOTk1IDAgMDAtLjk5OC0uOTk2aC0uNDQ5YTUuNzM0IDUuNzM0IDAgMDAtLjU2Ni0xLjM1NWwuMzIyLS4zMjNhLjk5NS45OTUgMCAwMDAtMS40MWwtLjcwNS0uNzA1YS45OTUuOTk1IDAgMDAtMS40MSAwbC0uMzIuMzJhNS43MzQgNS43MzQgMCAwMC0xLjM1OC0uNTZ2LS40NTVhLjk5Ni45OTYgMCAwMC0uOTk4LS45OTh6bS41MTUgMy45NzZhMyAzIDAgMDEzIDMgMyAzIDAgMDEtMyAzIDMgMyAwIDAxLTMtMyAzIDMgMCAwMTMtM3oiIHN0eWxlPSJtYXJrZXI6bm9uZSIgZmlsbD0iY29udGV4dC1maWxsIiBmaWxsLW9wYWNpdHk9ImNvbnRleHQtZmlsbC1vcGFjaXR5Ii8+PC9zdmc+")
+}

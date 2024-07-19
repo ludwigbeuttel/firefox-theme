@@ -1,43 +1,34 @@
+/* https://github.com/KiKaraage/ArcWTF/blob/main/tweaks/popup-search.css */
 @import url("popup-search.css");
+@import url("popup-search-overrides.css");
+/* https://github.com/KiKaraage/ArcWTF/blob/main/tweaks/sidebar.css */
 @import url("sidebar.css");
-
-#TabsToolbar {
-  display: none;
-}
-
-#sidebar {
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-#sidebar-header {
-  display: none;
-}
+@import url("sidebar-overrides.css");
 
 :root {
-  --uc-tweak-rounded-corners-padding: 2px;
-  --uc-tweak-rounded-corners-radius: 6px;
   --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
   --gnome-toolbar-icon-fill: var(--lwt-text-color) !important;
   --gnome-window-color: var(--lwt-text-color) !important;
   --gnome-menu-background: var(--lwt-accent-color) !important;
   --gnome-toolbar-background: var(--lwt-accent-color) !important;
   --gnome-toolbar-border-color: var(--lwt-accent-color) !important;
-}
-
-:root #sidebar-box {
-  --uc-sidebar-hover-width: 300px !important;
-}
-
-#nav-bar,
-#nav-bar .urlbarView-body-outer {
-  background: unset !important;
-  background-color: var(
-    --lwt-accent-color,
-    --gnome-headerbar-background
+  --gnome-accent-bg: var(--lwt-accent-color) !important;
+  --gnome-selection-bg: color-mix(
+    in hsl longer hue,
+    var(--lwt-text-color) 20%,
+    transparent
   ) !important;
-  transition: background-color 0.2s ease-in-out !important;
+
+  --gnome-tabbar-tab-active-background: var(--gnome-selection-bg) !important;
+  --gnome-tabbar-tab-hover-background: var(--gnome-selection-bg) !important;
+  --gnome-tabbar-tab-active-hover-background: color-mix(
+    in hsl longer hue,
+    var(--lwt-text-color) 30%,
+    transparent
+  ) !important;
+
+  --ltw-transition-duration: 0.2s;
+  --ltw-transition-type: ease-in-out;
 }
 
 * {
@@ -53,75 +44,77 @@
   list-style-image: url("../theme/icons/toggle-sidebar-symbolic.svg") !important;
 }
 
-#urlbar .urlbar-page-action:not([hidden]) {
-  display: grid;
-  place-items: center;
+#TabsToolbar {
+  display: none;
+
+  .tab-content::before {
+    display: none !important;
+  }
 }
 
-#urlbar[open] .urlbarView,
-#urlbar[open] .urlbarView-body-outer {
-  border-radius: 0 0 6px 6px !important;
+#nav-bar,
+#nav-bar .urlbarView-body-outer,
+.toolbar-items {
+  background: unset !important;
+  background-color: var(
+    --lwt-accent-color,
+    --gnome-headerbar-background
+  ) !important;
+  transition: background-color 0.2s ease-in-out !important;
 }
 
-#urlbar .search-one-offs {
-  display: none !important;
-}
+#urlbar {
+  .urlbar-page-action:not([hidden]) {
+    display: grid;
+    place-items: center;
+  }
 
-#urlbar .urlbarView-body-outer {
-  outline-color: var(--lwt-accent-color) !important;
-  color: var(--lwt-text-color) !important;
-}
-
-#urlbar
-  :is(#translations-button, #shopping-sidebar-button, #reader-mode-button) {
-  display: none !important;
-}
-
-#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
-  border-radius: 6px 6px 0 0 !important;
-  outline: none !important;
-
-  .urlbarView {
-    margin-top: -18px !important;
-    margin-left: -7px !important;
+  &[open] :is(.urlbarView .urlbarView-body-outer) {
     border-radius: 0 0 6px 6px !important;
-    width: calc(100% + 2px) !important;
   }
-}
 
-#urlbar[breakout][breakout-extend][pageproxystate="invalid"]:not([usertyping]) {
-  #urlbar-input-container {
-  margin-top: 10px !important;
+  .search-one-offs {
+    display: none !important;
   }
-  .urlbarView {
-    margin-top: -8px !important;
+
+  .urlbarView-body-outer {
+    outline-color: var(--lwt-accent-color) !important;
+    color: var(--lwt-text-color) !important;
   }
-}
 
-#sidebar-box:hover::before {
-display: none !important;
-}
+  :is(#translations-button, #shopping-sidebar-button, #reader-mode-button) {
+    display: none !important;
+  }
 
-#sidebar-box::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
+  /* popout-search active */
+  &:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+    border-radius: 6px 6px 0 0 !important;
+    outline: none !important;
 
-  top: 0px;
-  left: var(--uc-sidebar-hover-width);
+    .urlbarView {
+      /* margin-top: -18px !important; */
+      margin-top: -2px !important;
+      margin-left: -7px !important;
+      border-radius: 0 0 6px 6px !important;
+      width: calc(100% + 2px) !important;
+    }
 
-  height: 15px;
-  width: 65px;
-  border-top-left-radius: 0;
-  box-shadow: -5px 0 0 0 var(--lwt-accent-color);
+    .urlbar-input-container {
+      transform: translateY(-5px);
+    }
+  }
 
-  transition-property: border-radius !important;
-  transition-duration: 200ms !important;
-  transition-timing-function: ease-in-out !important;
-  pointer-events: none;
-}
+  &[breakout][breakout-extend][pageproxystate="invalid"]:not([usertyping]) {
+    #urlbar-input-container {
+      margin-top: 10px !important;
+    }
+    .urlbarView {
+      /* margin-top: -8px !important; */
+      margin-top: -2px !important;
+    }
 
-#main-window[titlepreface*="|| "] #sidebar-box::after,
-#sidebar-box:hover::after {
-  border-top-left-radius: var(--uc-tweak-rounded-corners-radius) !important;
+    .urlbar-input-container {
+      transform: translateY(-5px);
+    }
+  }
 }

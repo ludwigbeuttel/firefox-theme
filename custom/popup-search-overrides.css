@@ -25,7 +25,7 @@
   }
 }
 
-#nav-bar:after {
+#nav-bar::after {
   content: "";
   position: fixed;
   pointer-events: none;
@@ -39,6 +39,8 @@
   background-color: #000000 !important;
   backdrop-filter: blur(300px);
   opacity: 0;
+
+  z-index: 1;
 
   transition: opacity 0.2s ease-in-out;
 }

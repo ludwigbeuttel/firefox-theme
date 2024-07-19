@@ -44,12 +44,26 @@
   list-style-image: url("../theme/icons/toggle-sidebar-symbolic.svg") !important;
 }
 
-#TabsToolbar {
-  display: none;
+/* hide the tabs toolbar if one of the following sidebar extensions is active: */
+/* Sidebery */
+:root:not([customizing]):has(#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden])),
+/* Tree Style Tab */
+:root:not([customizing]):has(#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not([hidden])),
+/* Tab Center Reborn */
+:root:not([customizing]):has(#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:not([hidden])) {
+  & #TabsToolbar {
+    display: none;
+  }
+}
 
+#TabsToolbar {
   .tab-content::before {
     display: none !important;
   }
+}
+
+#navigator-toolbox {
+  z-index: 2;
 }
 
 #nav-bar,
@@ -97,6 +111,15 @@
       margin-left: -7px !important;
       border-radius: 0 0 6px 6px !important;
       width: calc(100% + 2px) !important;
+
+      transition: max-height 0.2s ease-in-out !important;
+
+      @starting-style {
+        max-height: 0;
+        overflow-y: hidden;
+      }
+
+      max-height: 440px;
     }
 
     .urlbar-input-container {

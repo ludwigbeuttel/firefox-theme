@@ -73,9 +73,9 @@
 }
 
 .Tab .close-icon {
-appearance:none
+  appearance:none;
 	fill: transparent;
-  background-color: currentColor;
+  background-color: var(--nav-btn-fg);
   width: 16px;
   height: 16px;
   transform: translateX(1px) translateY(1px);

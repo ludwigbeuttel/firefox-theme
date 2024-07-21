@@ -12,22 +12,22 @@
   #sidebar,
   #sidebar-header {
     transition-property: background-color, min-width !important;
-    transition-duration: var(--ltw-transition-duration),
+    transition-duration: var(--lwt-transition-duration),
       var(--uc-autohide-transition-duration) !important;
-    transition-timing-function: var(--ltw-transition-type),
+    transition-timing-function: var(--lwt-transition-type),
       var(--uc-autohide-transition-type) !important;
   }
 
   .sidebar-panel,
   .sidebar-panel #search-box {
     transition-property: background-color, color !important;
-    transition-duration: var(--ltw-transition-duration) !important;
+    transition-duration: var(--lwt-transition-duration) !important;
     transition-timing-function: var(--lwt-transition-type) !important;
   }
 
   #navigator-toolbox {
     transition-property: border-color !important;
-    transition-duration: var(--ltw-transition-duration) !important;
+    transition-duration: var(--lwt-transition-duration) !important;
     transition-timing-function: var(--lwt-transition-type) !important;
   }
 
@@ -38,12 +38,16 @@
   --uc-tweak-rounded-corners-radius: 6px;
   --uc-sidebar-hover-width: 300px !important;
 
-  transition-property: min-width, width, max-width, background-color, margin !important;
-  transition-duration: var(--ltw-transition-duration) !important;
-  transition-timing-function: var(--lwt-transition-type) !important;
+  transition-property: background-color, opacity, min-width, width, max-width,
+    margin !important;
+  transition-duration: var(--lwt-transition-duration), 0s,
+    var(--uc-autohide-transition-duration) !important;
+  transition-timing-function: var(--lwt-transition-type),
+    var(--uc-autohide-transition-type) !important;
+
+  background: unset !important;
 
   opacity: 0%;
-
   margin-right: calc(var(--uc-sidebar-width) * -1) !important;
 
   &::before {
@@ -64,8 +68,10 @@
     left: 0 !important;
 
     transition-property: background-color, left, border-radius !important;
-    transition-duration: var(--ltw-transition-duration), var(--uc-autohide-transition-duration) !important;
-    transition-timing-function: var(--ltw-transition-type), var(--uc-autohide-transition-type) !important;
+    transition-duration: var(--lwt-transition-duration),
+      var(--uc-autohide-transition-duration) !important;
+    transition-timing-function: var(--lwt-transition-type),
+      var(--uc-autohide-transition-type) !important;
     pointer-events: none;
 
     z-index: -1;
@@ -74,11 +80,24 @@
       border-top-left-radius: var(--uc-tweak-rounded-corners-radius);
     }
   }
+
+  &:hover {
+    margin-right: calc(var(--uc-sidebar-width) * -1) !important;
+
+    & > #sidebar {
+      margin-inline-start: 0 !important;
+      margin-inline-end: 0 !important;
+    }
+  }
+}
+
+#main-window[titlepreface*="|| "] #sidebar-box,
+#sidebar-box:hover {
+  transition-delay: 0, var(--uc-autohide-transition-duration), 0 !important;
 }
 
 #main-window[titlepreface*="|| "] #sidebar-box {
   margin-right: 0 !important;
-
 }
 
 #main-window[titlepreface*="|| "] #sidebar-box::after,

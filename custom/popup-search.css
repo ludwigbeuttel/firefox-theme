@@ -1,55 +1,115 @@
-/* search */
-#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
-  #urlbar-input {
-    font-size: 16px !important;
-    text-align: left !important;
+:root {
+    --popup-search-transition-duration: 0.2s;
+    --popup-search-transition-type: ease-in-out;
   }
-  #urlbar-input-container {
-    height: auto !important;
-    padding-block: var(--urlbar-block-padding) !important;
-    padding-inline: var(--urlbar-inline-padding) !important;
+  
+  /* keeping parent elements from messing with things */
+  #nav-bar {
+    overflow: visible !important;
   }
-  #urlbar-go-button {
-    margin: auto !important;
+  
+  #navigator-toolbox {
+    z-index: 2;
   }
-
-  z-index: 1;
-  position: fixed !important;
-  padding-block: 12px !important;
-  --urlbar-height: auto !important;
-  bottom: auto !important;
-  top: 20vh !important;
-  padding-left: 6px !important;
-  padding-right: 8px !important;
-  background-color: #toolbar-bgcolor !important;
-
-  left: 18vw !important;
-  right: 18vw !important;
-  width: 64vw !important;
-
-  & .urlbarView-results {
-    margin-top: 12px !important;
-    padding-block-start: 0px !important;
+  
+  #urlbar-container {
+    max-width: 1100px;
   }
-}
-
-/* background */
-#nav-bar:has(#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused])) {
-  /* created as :after so that elements to the right of 
-       urlbar will be covered properly */
-  &:after {
+  
+  /* urlbar */
+  #urlbar {
+    --gnome-focused-urlbar-border-color: transparent !important;
+  
+    width: 100% !important;
+    transform: translateX(0) !important;
+    top: 0;
+  
+    transition: unset !important;
+    transition-property: background-color, top, opacity, border-radius, transform, padding, height, width !important;
+    transition-duration: var(--lwt-transition-duration), var(--popup-search-transition-duration) !important;
+    transition-timing-function: var(--lwt-transition-type), var(--popup-search-transition-type) !important;
+  }
+  
+  #urlbar,
+  #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+    position: absolute !important;
+    left: 0 !important;
+    right: unset !important;
+    bottom: unset !important;
+  }
+  
+  #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+    --urlbar-container-height: 44px !important;
+    --urlbar-height: 44px !important;
+  
+    top: 20dvh !important;
+    max-height: 44px !important;
+    height: 44px !important;
+    width: calc(100% + 20dvw) !important;
+  
+    padding: 0px 10px !important;
+    border-radius: 6px 6px 0 0 !important;
+    background-color: var(--lwt-accent-color, --gnome-menu-background) !important;
+    transform: translateX(-10dvw) !important;
+  
+    #urlbar-background {
+      background-color: var(--gnome-entry-background) !important;
+    }
+  }
+  
+  /* searcn suggestions / browsing history */
+  #urlbar {
+    &:is([breakout][breakout-extend], [breakout][usertyping][focused])
+      :is(.urlbarView .urlbarView-body-outer) {
+      border-radius: 0 0 6px 6px !important;
+    }
+  
+    .urlbarView-body-outer {
+      outline-color: var(--lwt-accent-color) !important;
+      color: var(--lwt-text-color) !important;
+    }
+  
+    .urlbarView {
+      display: block !important;
+      transition: max-height 0.2s ease-in-out !important;
+      max-height: 0;
+      overflow-y: hidden;
+  
+      margin-top: 0px !important;
+      margin-left: -11px !important;
+      border-radius: 0 0 6px 6px !important;
+      width: calc(100% + 2px) !important;
+    }
+  
+    &:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+      .urlbarView {
+        max-height: 440px;
+      }
+    }
+  }
+  
+  /* popup background */
+  #nav-bar::after {
     content: "";
     position: fixed;
     pointer-events: none;
-
+  
     width: 100vw;
     height: 100vh;
-
+  
     top: 0px;
     left: 0px;
-
-    background-color: #000000 !important;
-    opacity: 0.5;
-    backdrop-filter: blur(300px);
+  
+    background-color: #000 !important;
+    opacity: 0;
+  
+    z-index: 1;
+  
+    transition: opacity 0.2s ease-in-out;
   }
-}
+  
+  #nav-bar:has(#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]))::after {
+    opacity: .3;
+    pointer-events: auto !important;
+  }
+  

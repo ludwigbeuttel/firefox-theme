@@ -52,12 +52,12 @@
 	transition: background-color 200ms ease-in-out;
 }
 
-.Tab[data-active:true] .body::before,
+.Tab[data-active="true"] .body::before,
 .Tab:hover .body::before {
   background-color: color-mix(in hsl longer hue, currentColor 20%, transparent) !important;
 }
 
-.Tab[data-active:true]:hover .body::before {
+.Tab[data-active="true"]:hover .body::before {
   background-color: color-mix(in hsl longer hue, currentColor 30%, transparent) !important;
 }
 
@@ -75,7 +75,7 @@
 .Tab .close-icon {
   appearance:none;
 	fill: transparent;
-  background-color: var(--nav-btn-fg);
+  background-color: currentColor;
   width: 16px;
   height: 16px;
   transform: translateX(1px) translateY(1px);
@@ -88,6 +88,11 @@
 .TabsPanel .new-tab-btns{
   position: relative;
   padding-top: 5px;
+transition: background-color .2s ease-in-out, transform var(--d-fast),opacity var(--d-fast),z-index var(--d-fast) var(--d-fast);
+}
+
+.TabsPanel .new-tab-btns::after{
+  transition: background-color .2s ease-in-out;
 }
 
 .TabsPanel .new-tab-btn {
@@ -144,6 +149,10 @@
   fill: var(--nav-btn-fg);
   opacity: 40%;
   scale: 0.75;
+}
+
+.bottom-space {
+  transition: background-color .2s ease-in-out, transform var(--d-fast),z-index var(--d-fast) var(--d-fast) !important;
 }
 
 /* Settings related to Hidden Panels icon and popup layer, adapting to the flipped navbar orientation. */

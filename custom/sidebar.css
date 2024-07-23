@@ -6,13 +6,12 @@
 #main-window:not([customizing]):has(#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not([hidden])),
 /* Tab Center Reborn */
 #main-window:not([customizing]):has(#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:not([hidden])) {
-  :root {
-    --sidebar-width: var(--sidebar-min-width);
-    --sidebar-min-width: 50px;
-    --sidebar-ext-width: 300px;
-    --sidebar-transition-duration: 0.2s;
-    --sidebar-transition-type: ease-in-out;
-  }
+  --sidebar-width: var(--sidebar-min-width);
+  --sidebar-min-width: 50px;
+  --sidebar-ext-width: 300px;
+  --sidebar-transition-duration: 0.2s;
+  --sidebar-transition-type: ease-in-out;
+  --sidebar-transition-delay: 0.2s;
 
   #TabsToolbar {
     display: none;
@@ -56,7 +55,8 @@
       var(--sidebar-transition-duration) !important;
     transition-timing-function: linear, var(--lwt-transition-type),
       var(--sidebar-transition-type) !important;
-    transition-delay: 0ms, 0ms, 200ms, 200ms, 200ms;
+    transition-delay: 0ms, 0ms, var(--sidebar-transition-delay),
+      var(--sidebar-transition-delay), var(--sidebar-transition-delay);
 
     &::after {
       content: "";
@@ -74,6 +74,7 @@
         var(--sidebar-transition-duration) !important;
       transition-timing-function: var(--lwt-transition-type),
         var(--sidebar-transition-type) !important;
+      transition-delay: var(--sidebar-transition-delay);
     }
 
     &[positionend]:not(:-moz-locale-dir(rtl)),

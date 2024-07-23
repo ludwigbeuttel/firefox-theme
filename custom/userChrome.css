@@ -33,6 +33,10 @@
 }
 
 /* change usersettings extension icon */
+#navigator-toolbox {
+  --toolbar-start-end-padding: 6px;
+}
+
 :is(
     .webextension-browser-action,
     .eom-addon-button

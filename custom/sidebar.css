@@ -6,10 +6,13 @@
 #main-window:not([customizing]):has(#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not([hidden])),
 /* Tab Center Reborn */
 #main-window:not([customizing]):has(#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:not([hidden])) {
-  --sidebar-width: 0px;
-  --sidebar-ext-width: 300px;
-  --sidebar-transition-duration: 0.2s;
-  --sidebar-transition-type: ease-in-out;
+  :root {
+    --sidebar-width: var(--sidebar-min-width);
+    --sidebar-min-width: 50px;
+    --sidebar-ext-width: 300px;
+    --sidebar-transition-duration: 0.2s;
+    --sidebar-transition-type: ease-in-out;
+  }
 
   #TabsToolbar {
     display: none;
@@ -26,6 +29,12 @@
   /* remove to keep the sidebar header visible */
   #sidebar-header {
     display: none;
+  }
+
+  #sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
   }
 
   #sidebar-box {
@@ -47,37 +56,20 @@
       var(--sidebar-transition-duration) !important;
     transition-timing-function: linear, var(--lwt-transition-type),
       var(--sidebar-transition-type) !important;
-
-    &::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      height: 100%;
-      width: 24px;
-      transition-property: background-color, width !important;
-      transition-duration: var(--lwt-transition-duration),
-        var(--sidebar-transition-duration) !important;
-      transition-timing-function: var(--lwt-transition-type),
-        var(--sidebar-transition-type) !important;
-      transition-delay: 0, 0.1s;
-    }
+    transition-delay: 0ms, 0ms, 200ms, 200ms, 200ms;
 
     &::after {
-      --border-radius: 0;
-
       content: "";
       position: fixed;
       top: 47px;
       left: var(--sidebar-width);
       pointer-events: none;
       z-index: 1;
-      height: 24px;
-      width: 24px;
-      border-top-left-radius: var(--border-radius);
+      height: 12px;
+      width: 12px;
+      border-top-left-radius: 6px;
       box-shadow: -5px 0 0 0 var(--lwt-accent-color);
-      transition-property: box-shadow, border-radius, left !important;
+      transition-property: box-shadow, border-radius, left, right !important;
       transition-duration: var(--lwt-transition-duration),
         var(--sidebar-transition-duration) !important;
       transition-timing-function: var(--lwt-transition-type),
@@ -87,10 +79,6 @@
     &[positionend]:not(:-moz-locale-dir(rtl)),
     &:not([positionend]):-moz-locale-dir(rtl) {
       &,
-      &::before {
-        left: unset;
-        right: 0;
-      }
       &::after {
         left: unset;
         right: var(--sidebar-width);
@@ -114,40 +102,49 @@
     }
   }
 
-  #sidebar {
-    --sidebar-width: 300px;
-
-    min-width: var(--sidebar-width) !important;
-    max-width: var(--sidebar-width) !important;
-    width: var(--sidebar-width) !important;
+  #nav-bar {
+    --toolbar-start-end-padding: 2px;
   }
 
   #browser > #appcontent {
-    transition: margin-left var(--sidebar-transition-duration)
+    transition: margin var(--sidebar-transition-duration)
       var(--sidebar-transition-type);
     margin-left: -1px;
   }
 
+  &:has(#sidebar-box:hover),
   &[titlepreface*="​"] {
     --sidebar-width: var(--sidebar-ext-width) !important;
+  }
 
-    #browser > #appcontent {
-      margin-left: calc(var(--sidebar-width) - 1px);
-    }
+  &:not([sizemode="fullscreen"]) #browser > #appcontent {
+    margin-left: calc(var(--sidebar-min-width) - 1px);
+  }
+
+  &:not([sizemode="fullscreen"]):has(
+      #sidebar-box:is(
+          [positionend]:not(:-moz-locale-dir(rtl)),
+          :not([positionend]):-moz-locale-dir(rtl)
+        )
+    )
+    #browser
+    > #appcontent {
+    margin-left: 0;
+    margin-right: calc(var(--sidebar-min-width) - 1px);
   }
 
   &[titlepreface*="​"] #sidebar-box,
   &:not([titlepreface*="​"]) #sidebar-box:hover {
     --sidebar-width: var(--sidebar-ext-width) !important;
-    &::before {
-      width: 0 !important;
-    }
-    &::after {
-      --border-radius: 6px !important;
-    }
+    --sidebar-min-width: var(--sidebar-ext-width) !important;
   }
 
-  &[sizemode="fullscreen"] #sidebar-box::before {
-    width: 0 !important;
+  &[sizemode="fullscreen"] #sidebar-box {
+    --sidebar-width: 0 !important;
+    --sidebar-min-width: 0 !important;
+
+    &::after {
+      display: none;
+    }
   }
 }

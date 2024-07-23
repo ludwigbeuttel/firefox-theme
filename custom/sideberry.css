@@ -44,10 +44,6 @@
 /* Uncomment this to apply Segoe UI Variable font - Make sure to install the font first */
 #root.root {--tabs-font: 1em Inter Variable, Inter;}
 
-.Tab {
-  transition: background-color .2s linear;
-}
-
 .Tab .body::before {
 	transition: background-color 200ms ease-in-out;
 }
@@ -215,4 +211,45 @@ transition: background-color .2s ease-in-out, transform var(--d-fast),opacity va
   width: 16px;
   height: 16px;
   mask: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuNTAyIDEuMDE5YS45OTYuOTk2IDAgMDAtLjk5OC45OTh2LjQ1MWE1LjczNCA1LjczNCAwIDAwLTEuMzU2LjU2NmwtLjMyMi0uMzIyYS45OTUuOTk1IDAgMDAtMS40MSAwbC0uNzA1LjcwNWEuOTk1Ljk5NSAwIDAwMCAxLjQxbC4zMi4zMmE1LjczNCA1LjczNCAwIDAwLS41NiAxLjM1OGgtLjQ1NGEuOTk1Ljk5NSAwIDAwLS45OTguOTk2VjguNWMwIC41NTMuNDQ2Ljk5Ni45OTguOTk2aC40NWE1LjczNCA1LjczNCAwIDAwLjU2NiAxLjM1NmwtLjMyMi4zMjJhLjk5NS45OTUgMCAwMDAgMS40MWwuNzA1LjcwNWMuMzkuMzkxIDEuMDIuMzkxIDEuNDEgMGwuMzItLjMyYTUuNzM0IDUuNzM0IDAgMDAxLjM1OC41NnYuNDU2YzAgLjU1Mi40NDUuOTk2Ljk5OC45OTZoLjk5NmEuOTk1Ljk5NSAwIDAwLjk5OC0uOTk2di0uNDUxYTUuNzM0IDUuNzM0IDAgMDAxLjM1NS0uNTY3bC4zMjMuMzIyYy4zOS4zOTEgMS4wMi4zOTEgMS40MSAwbC43MDUtLjcwNWEuOTk1Ljk5NSAwIDAwMC0xLjQxbC0uMzItLjMyYTUuNzM0IDUuNzM0IDAgMDAuNTYtMS4zNThoLjQ1M2EuOTk1Ljk5NSAwIDAwLjk5OC0uOTk2di0uOTk4YS45OTUuOTk1IDAgMDAtLjk5OC0uOTk2aC0uNDQ5YTUuNzM0IDUuNzM0IDAgMDAtLjU2Ni0xLjM1NWwuMzIyLS4zMjNhLjk5NS45OTUgMCAwMDAtMS40MWwtLjcwNS0uNzA1YS45OTUuOTk1IDAgMDAtMS40MSAwbC0uMzIuMzJhNS43MzQgNS43MzQgMCAwMC0xLjM1OC0uNTZ2LS40NTVhLjk5Ni45OTYgMCAwMC0uOTk4LS45OTh6bS41MTUgMy45NzZhMyAzIDAgMDEzIDMgMyAzIDAgMDEtMyAzIDMgMyAwIDAxLTMtMyAzIDMgMCAwMTMtM3oiIHN0eWxlPSJtYXJrZXI6bm9uZSIgZmlsbD0iY29udGV4dC1maWxsIiBmaWxsLW9wYWNpdHk9ImNvbnRleHQtZmlsbC1vcGFjaXR5Ii8+PC9zdmc+")
+}
+
+/* sidebar styling */
+.Tab .fav {
+  margin-left: 9px !important;
+  margin-right: 9px !important;
+}
+
+.top-horizontal-box {
+  margin-top:0;
+  margin-bottom: 0;
+  padding-top: var(--general-margin);
+  padding-bottom: var(--general-margin);
+  flex-wrap: nowrap;
+  max-height: min(calc(100vw - 50px), 32px);
+  overflow-y: hidden;
+  will-change: max-height;
+}
+
+.new-tab-btns .new-tab-btn {
+  padding-left: 9px;
+	overflow-x: hidden;
+}
+
+.new-tab-btns .new-tab-btn::before {
+  width: calc(100% - 2px);
+}
+
+.TabsPanel .new-tab-btn::after {
+  padding-left: calc(var(--tabs-inner-gap) + var(--tabs-margin) + 7px) !important;
+	white-space: nowrap;
+  overflow-x:hidden;
+  max-width: calc(100% - 28px) !important;
+}
+
+.top-horizontal-box {
+  display:none;
+}
+
+.new-tab-btns {
+  margin-bottom: 5px;
 }

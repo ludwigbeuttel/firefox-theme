@@ -1,0 +1,113 @@
+/* CSS to add below gnome theme's CSS */
+
+/* transition between colors provided by lwt */
+:root {
+  --tablist-separator: currentColor;
+}
+
+body,
+#topmenu,
+#filterbox-input::placeholder,
+.tab-drag-overlay,
+.tab-loading-burst,
+.tab-context,
+#pinnedtablist,
+.tab-icon-overlay,
+#tablist-wrapper::after,
+#tablist-wrapper #moretabs,
+#tablist-wrapper::after,
+.tab .tab-pin,
+.tab-close,
+#filterbox-icon,
+#newtab-icon,
+#settings-icon,
+#bottomshadow,
+#topshadow,
+.topmenu-button {
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+body,
+#topmenu {
+  transition-property: background-color, color;
+}
+
+#filterbox-input::placeholder,
+.tab-drag-overlay,
+.tab-loading-burst,
+.tab-context {
+  transition-property: color;
+}
+
+#pinnedtablist,
+.tab-icon-overlay,
+.topmenu-button {
+  transition-property: background-color;
+}
+
+#tablist-wrapper::after,
+#tablist-wrapper #moretabs,
+#tablist-wrapper::after {
+  transition-property: border-color;
+}
+
+#filterbox-icon,
+#newtab-icon,
+#settings-icon {
+  transition-property: fill, opacity;
+}
+
+.tab .tab-pin,
+.tab .tab-close {
+  transition-property: fill, opacity;
+}
+
+#bottomshadow,
+#topshadow {
+  transition-property: box-shadow;
+}
+
+.tab {
+  transition: box-shadow 0.1s ease, height 0.05s linear,
+    background-color 0.2s ease-in-out !important;
+}
+
+#tablist-wrapper::after {
+  margin-top: 6px;
+  height: 1px;
+  border-width: 0;
+  border-top-width: 1px;
+  opacity: 0.45;
+}
+
+/* debounce tab close button opacity */
+.tab:hover .tab-close {
+  transition-delay: 0s, 0.2s;
+}
+
+/* make newtab fit the rest of the buttons */
+#topmenu {
+  height: 46px;
+}
+#newtab {
+  margin-left: 2px;
+  padding-left: 10px;
+  width: calc(100% - 2px);
+  height: 36px;
+}
+
+/* make title masking fit the debounced close button */
+#tablist .tab > .tab-title-wrapper {
+  transition: --close-spacer 1s ease-in-out;
+  --close-spacer: 0;
+  mask-image: linear-gradient(
+    270deg,
+    transparent 28px,
+    #000 calc(2em + var(--close-spacer))
+  ) !important;
+}
+
+#tablist .tab:wrapper > .tab-title-wrapper {
+  --close-spacer: 28px;
+}

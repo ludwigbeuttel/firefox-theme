@@ -140,9 +140,19 @@
     --sidebar-min-width: var(--sidebar-ext-width) !important;
   }
 
+  &[titlepreface*="​"] #sidebar-box {
+    transition-delay: 0ms;
+
+    &::after {
+      transition-delay: 0ms;
+    }
+  }
+
   &[sizemode="fullscreen"] #sidebar-box {
     --sidebar-width: 0 !important;
     --sidebar-min-width: 0 !important;
+
+    transition-delay: 0ms;
 
     &::after {
       display: none;

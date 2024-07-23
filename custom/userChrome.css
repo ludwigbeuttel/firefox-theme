@@ -1,5 +1,5 @@
 @import url("popup-search.css");
-@import url("sidebar.css");
+@import url("tab-center-reborn-overrides.css");
 
 :root {
   --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
@@ -14,6 +14,7 @@
     var(--lwt-text-color) 20%,
     transparent
   ) !important;
+  --gnome-window-background: var(--lwt-accent-color) !important;
 
   --gnome-tabbar-tab-active-background: var(--gnome-selection-bg) !important;
   --gnome-tabbar-tab-hover-background: var(--gnome-selection-bg) !important;

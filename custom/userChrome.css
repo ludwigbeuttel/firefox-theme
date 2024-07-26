@@ -25,7 +25,7 @@
   ) !important;
 
   --lwt-transition-duration: 0.2s;
-  --lwt-transition-type: ease-in-out;
+  --lwt-transition-type: ease-out;
 }
 
 * {
@@ -35,7 +35,22 @@
 
 /* change usersettings extension icon */
 #navigator-toolbox {
-  --toolbar-start-end-padding: 6px;
+  --toolbar-start-end-padding: 1px;
+}
+
+#main-window:not([customizing])
+  .toolbaritem-combined-buttons[id*="userchrome-toggle"] {
+  opacity: 0;
+  max-width: 0;
+  transition-property: opacity, max-width;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+#main-window:not([customizing]):has(#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:not([hidden]))
+  .toolbaritem-combined-buttons[id*="userchrome-toggle"] {
+  opacity: 1;
+  max-width: 42px;
 }
 
 :is(
@@ -99,4 +114,44 @@
   :is(#translations-button, #shopping-sidebar-button, #reader-mode-button) {
     display: none !important;
   }
+}
+
+tab.tabbrowser-tab {
+  &:not([pinned]) {
+    transition-property: opacity, min-width, max-width !important;
+    transition-duration: 0.1s, 0.2s !important;
+    transition-timing-function: ease-out !important;
+    overflow: hidden;
+
+    &:not([fadein]) {
+      visibility: visible !important;
+      max-width: 0 !important;
+      min-width: 0 !important;
+      opacity: 0 !important;
+    }
+
+    @starting-style {
+      max-width: 0 !important;
+      min-width: 0 !important;
+      opacity: 0 !important;
+    }
+  }
+}
+
+#alltabs-button {
+  transition-property: background, max-width, margin, padding !important;
+  transition-duration: 0.2s !important;
+  transition-delay: 0.2s !important;
+  transition-timing-function: ease;
+  visibility: visible !important;
+  max-width: 34px;
+  overflow-x: hidden;
+}
+
+#tabbrowser-tabs:not([overflow]) ~ #alltabs-button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 0 !important;
 }

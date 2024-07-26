@@ -1,11 +1,36 @@
 @media screen and (-moz-bool-pref: "gnomeTheme.extensions.tabCenterReborn") {
-    #sidebar,
-    #sidebar-box {
+  /* only hide browsertabs is tabcenter is actuall in use */
+  #tabbrowser-tabs {
+    display: block !important;
+  }
+
+  #main-window:not([customizing]):has(
+      #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
+    ) {
+    #tabbrowser-tabs,
+    #TabsToolbar-customization-target,
+    #alltabs-button {
+      display: none !important;
+    }
+  }
+
+  /* use lwt colors */
+  #sidebar,
+  #sidebar-box {
     background-color: var(--gnome-toolbar-background) !important;
   }
 
-  @media (not(-moz-bool-pref: "gnomeTheme.extensions.tabCenterReborn.alwaysOpen")) {
+  /* attempt to improve animation smoothness  */
+  #sidebar-box[sidebarcommand*="tabcenter"],
+  #sidebar-box[sidebarcommand*="tabcenter"] #sidebar {
+    transition-property: max-width, width, min-width, background-color !important;
+    will-change: max-width, width, min-width, background-color !important;
+  }
+
+  /* enable support for userchrome extension */
+  @media not (-moz-bool-pref: "gnomeTheme.extensions.tabCenterReborn.alwaysOpen") {
     #main-window[titlepreface*="​"] {
+      /* apply stles from the original theme/extensions/tab-center-reborn.css */
       #sidebar-box[sidebarcommand*="tabcenter"] #sidebar,
       #sidebar-box[sidebarcommand*="tabcenter"] {
         min-width: 10vw !important;
@@ -33,6 +58,28 @@
           max-width: 400px !important;
         }
       }
+    }
+  }
+
+  /* add rounded corner */
+  #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      transform: translateX(calc(100% + 1px));
+      pointer-events: none;
+      z-index: 1;
+      height: 12px;
+      width: 12px;
+      border-top-left-radius: 6px;
+      box-shadow: -5px 0 0 0 var(--lwt-accent-color);
+      transition-property: box-shadow !important;
+      transition-duration: var(--lwt-transition-duration) !important;
+      transition-timing-function: var(--lwt-transition-type) !important;
     }
   }
 }

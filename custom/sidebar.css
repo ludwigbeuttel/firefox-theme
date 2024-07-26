@@ -10,7 +10,7 @@
   --sidebar-min-width: 50px;
   --sidebar-ext-width: 300px;
   --sidebar-transition-duration: 0.2s;
-  --sidebar-transition-type: ease-in-out;
+  --sidebar-transition-type: ease-out;
   --sidebar-transition-delay: 0.2s;
 
   #TabsToolbar {

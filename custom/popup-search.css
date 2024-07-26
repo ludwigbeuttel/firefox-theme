@@ -1,6 +1,6 @@
 :root {
     --popup-search-transition-duration: 0.2s;
-    --popup-search-transition-type: ease-in-out;
+    --popup-search-transition-type: ease-out;
   }
   
   /* keeping parent elements from messing with things */
@@ -71,7 +71,7 @@
   
     .urlbarView {
       display: block !important;
-      transition: max-height 0.2s ease-in-out !important;
+      transition: max-height 0.2s ease-out !important;
       max-height: 0;
       overflow-y: hidden;
   
@@ -105,7 +105,7 @@
   
     z-index: 1;
   
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-out;
   }
   
   #nav-bar:has(#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]))::after {

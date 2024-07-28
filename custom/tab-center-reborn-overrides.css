@@ -23,8 +23,8 @@
   /* attempt to improve animation smoothness  */
   #sidebar-box[sidebarcommand*="tabcenter"],
   #sidebar-box[sidebarcommand*="tabcenter"] #sidebar {
-    transition-property: max-width, width, min-width, background-color !important;
-    will-change: max-width, width, min-width, background-color !important;
+    transition-property: max-width, width, min-width, background-color, border-color !important;
+    will-change: max-width, width, min-width, background-color, border-color !important;
   }
 
   /* enable support for userchrome extension */
@@ -65,6 +65,12 @@
   #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
     overflow: visible;
 
+    #sidebar {
+      position: relative;
+      z-index: 2;
+      border-top-right-radius: 6px;
+    }
+
     &::after {
       content: "";
       position: absolute;
@@ -81,5 +87,40 @@
       transition-duration: var(--lwt-transition-duration) !important;
       transition-timing-function: var(--lwt-transition-type) !important;
     }
+
+    &[positionend]:not(:-moz-locale-dir(rtl)),
+    &:not([positionend]):-moz-locale-dir(rtl) {
+      #sidebar {
+        position: relative;
+        z-index: 2;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 6px;
+      }
+
+      &,
+      &::after {
+        right: unset;
+        left: 0px;
+        transform: translateX(calc(-100% - 1px));
+        border-top-left-radius: 0px;
+        border-top-right-radius: 6px;
+      }
+    }
+  }
+
+  #main-window:not([inFullscreen])
+    #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
+    &[positionend]:not(:-moz-locale-dir(rtl)),
+    &:not([positionend]):-moz-locale-dir(rtl) {
+      ~ #appcontent {
+        margin-left: 0;
+        margin-right: var(--positionX1);
+      }
+    }
+  }
+
+  #main-window[inFullscreen][inDOMFullscreen] #appcontent {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }

@@ -4,6 +4,7 @@
 /* transition between colors provided by lwt */
 :root {
   --tablist-separator: currentColor;
+  --tab-active-background: var(--tab-hover-background);
 }
 
 body,

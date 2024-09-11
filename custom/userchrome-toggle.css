@@ -1,0 +1,50 @@
+
+#main-window:not([customizing])
+  :is(
+    .toolbaritem-combined-buttons[id*="userchrome-toggle"],
+    .toolbaritem-combined-buttons[id*="userchrome-toggle"]
+      + .toolbaritem-combined-buttons[id*="tabcenter-reborn"]
+  ) {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition-property: opacity, max-width;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+#main-window:not([customizing])
+  .toolbaritem-combined-buttons[id*="userchrome-toggle"]
+  + .toolbaritem-combined-buttons[id*="tabcenter-reborn"] {
+  opacity: 1;
+  max-width: 42px;
+}
+
+#main-window:not([customizing]):has(#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:not([hidden]))
+  .toolbaritem-combined-buttons[id*="userchrome-toggle"] {
+  opacity: 1;
+  max-width: 42px;
+
+  + .toolbaritem-combined-buttons[id*="tabcenter-reborn"] {
+    opacity: 0;
+    max-width: 0px;
+  }
+}
+
+:is(
+    .webextension-browser-action,
+    .eom-addon-button
+  )[data-extensionid="userchrome-toggle@joolee.nl"]
+  .toolbarbutton-icon {
+  list-style-image: url("../theme/icons/toggle-sidebar-symbolic.svg") !important;
+}
+
+#main-window[positionend]:not(:-moz-locale-dir(rtl)),
+#main-window:not([positionend]):-moz-locale-dir(rtl) {
+  :is(
+      .webextension-browser-action,
+      .eom-addon-button
+    )[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon {
+    list-style-image: url("../theme/icons/toggle-right-sidebar-symbolic.svg") !important;
+  }
+}

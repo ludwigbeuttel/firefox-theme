@@ -1,5 +1,6 @@
 @import url("popup-search.css");
 @import url("tab-center-reborn-overrides.css");
+@import url("icons.css");
 
 :root {
   --toolbarbutton-icon-fill: var(--lwt-text-color) !important;

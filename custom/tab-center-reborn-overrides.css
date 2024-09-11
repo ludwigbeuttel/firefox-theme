@@ -44,18 +44,24 @@
       }
 
       @media (width >= 1200px) {
-        #sidebar-box[sidebarcommand*="tabcenter"]:hover #sidebar,
-        #sidebar-box[sidebarcommand*="tabcenter"]:hover {
+        #sidebar-box[sidebarcommand*="tabcenter"] #sidebar,
+        #sidebar-box[sidebarcommand*="tabcenter"] {
           max-width: 250px !important;
         }
       }
 
       @media (width >= 2000px) {
-        #sidebar-box[sidebarcommand*="tabcenter"]:hover #sidebar,
-        #sidebar-box[sidebarcommand*="tabcenter"]:hover {
+        #sidebar-box[sidebarcommand*="tabcenter"] #sidebar,
+        #sidebar-box[sidebarcommand*="tabcenter"] {
           max-width: 400px !important;
         }
       }
+    }
+
+    #main-window[titlepreface*="​"]:not([inFullscreen])
+      #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
+      ~ #appcontent {
+      --positionX1: 0;
     }
   }
 

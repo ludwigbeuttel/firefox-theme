@@ -6,12 +6,9 @@
 
   #main-window:not([customizing]):has(
       #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
-    ) {
-    #tabbrowser-tabs,
-    #TabsToolbar-customization-target,
-    #alltabs-button {
-      display: none !important;
-    }
+    )
+    :is(#tabbrowser-tabs, #TabsToolbar-customization-target, #alltabs-button) {
+    display: none !important;
   }
 
   /* use lwt colors */
@@ -23,7 +20,8 @@
   /* attempt to improve animation smoothness  */
   #sidebar-box[sidebarcommand*="tabcenter"],
   #sidebar-box[sidebarcommand*="tabcenter"] #sidebar {
-    transition-property: max-width, width, min-width, background-color, border-color !important;
+    transition-property: max-width, width, min-width, background-color,
+      border-color !important;
     will-change: max-width, width, min-width, background-color, border-color !important;
   }
 

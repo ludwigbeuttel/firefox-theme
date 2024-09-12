@@ -4,6 +4,17 @@
     display: block !important;
   }
 
+  #main-window:not([customizing])[chromehidden*="toolbar"]
+    #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
+    display: none !important;
+  }
+
+  #main-window:not([customizing])[chromehidden*="toolbar"]
+    #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
+    ~ #appcontent {
+    --positionX1: 0;
+  }
+
   #main-window:not([customizing]):has(
       #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
     )

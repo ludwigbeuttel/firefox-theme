@@ -11,7 +11,7 @@
 
   #main-window:not([customizing])[chromehidden*="toolbar"]
     #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
-    ~ #appcontent {
+    ~ :is(#tabbrowser-tabbox, #appcontent) {
     --positionX1: 0;
   }
 
@@ -71,7 +71,7 @@
 
     #main-window[titlepreface*="​"]:not([inFullscreen])
       #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden])
-      ~ #appcontent {
+      ~ :is(#tabbrowser-tabbox, #appcontent) {
       --positionX1: 0;
     }
   }
@@ -127,15 +127,19 @@
     #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) {
     &[positionend]:not(:-moz-locale-dir(rtl)),
     &:not([positionend]):-moz-locale-dir(rtl) {
-      ~ #appcontent {
+      ~ :is(#tabbrowser-tabbox, #appcontent) {
         margin-left: 0;
-        margin-right: var(--positionX1);
+        margin-right: var(--positionX1) !important;
       }
     }
   }
 
-  #main-window[inFullscreen][inDOMFullscreen] #appcontent {
+  #main-window[inFullscreen][inDOMFullscreen] :is(#tabbrowser-tabbox, #appcontent) {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
+
+  #main-window:not([inFullscreen]) #sidebar-box[sidebarcommand*="tabcenter"]:not([hidden]) ~ :is(#tabbrowser-tabbox, #appcontent) {
+    margin-left: var(--positionX1) !important;
+}
 }

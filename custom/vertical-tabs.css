@@ -1,0 +1,55 @@
+#sidebar-main {
+  border-right: 1px solid light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+
+  #tabbrowser-tabs {
+    .tabbrowser-tab {
+      --tab-min-width: 0 !important;
+
+      .tab-icon-stack {
+        margin-left: 0px !important;
+      }
+
+      image.tab-close-button {
+        display: none !important;
+        margin-left: 0 !important;
+      }
+      .tab-content::before {
+        display: none;
+      }
+
+      .tab-background {
+        margin: 0 !important;
+      }
+
+      &:not([hidden="true"], [pinned]):first-of-type {
+        padding-left: 2px !important;
+
+        .tab-icon-stack {
+          width: 24px;
+        }
+      }
+    }
+
+    #tabbrowser-arrowscrollbox-periphery {
+      margin-left: 3px;
+
+      #tabs-newtab-button {
+        margin: 0 !important;
+      }
+    }
+
+    &[closebuttons="activetab"]
+      .tabbrowser-tab:not([pinned])
+      .tab-close-button {
+      display: none !important;
+    }
+  }
+  
+  .actions-list {
+    gap: 6px;
+  }
+}
+
+#tabbrowser-tabbox {
+  box-shadow: none !important;
+}

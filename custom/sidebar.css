@@ -92,11 +92,13 @@
     &:not([positionend]):hover {
       /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
       /* from https://github.com/KiKaraage/ArcWTF/blob/main/tweaks/sidebar.css */
-      ~ #appcontent #statuspanel {
+      ~ #appcontent #statuspanel,
+      ~ #tabbrowser-tabbox #statuspanel {
         inset-inline: auto 0px !important;
       }
 
-      ~ #appcontent #statuspanel-label {
+      ~ #appcontent #statuspanel-label,
+      ~ #tabbrowser-tabbox #statuspanel-label {
         margin-inline: 0px !important;
         border-left-style: solid !important;
       }
@@ -107,7 +109,8 @@
     --toolbar-start-end-padding: 2px;
   }
 
-  #browser > #appcontent {
+  #browser > #appcontent,
+  #browser > #tabbrowser-tabbox {
     transition: margin var(--sidebar-transition-duration)
       var(--sidebar-transition-type);
     margin-left: -1px;
@@ -118,7 +121,8 @@
     --sidebar-width: var(--sidebar-ext-width) !important;
   }
 
-  &:not([sizemode="fullscreen"]) #browser > #appcontent {
+  &:not([sizemode="fullscreen"]) #browser > #appcontent,
+  &:not([sizemode="fullscreen"]) #browser > #tabbrowser-tabbox {
     margin-left: calc(var(--sidebar-min-width) - 1px);
   }
 
@@ -127,9 +131,7 @@
           [positionend]:not(:-moz-locale-dir(rtl)),
           :not([positionend]):-moz-locale-dir(rtl)
         )
-    )
-    #browser
-    > #appcontent {
+    ):is(#browser > #appcontent, #browser > #tabbrowser-tabbox) {
     margin-left: 0;
     margin-right: calc(var(--sidebar-min-width) - 1px);
   }

@@ -1,7 +1,8 @@
-@import url("popup-search.css");
+/* @import url("popup-search.css"); */
 @import url("tab-center-reborn-overrides.css");
-@import "userchrome-toggle.css";
+@import url("userchrome-toggle.css");
 @import url("icons.css");
+/*@import url("vertical-tabs.css");*/
 
 :root {
   --toolbarbutton-icon-fill: var(--lwt-text-color) !important;

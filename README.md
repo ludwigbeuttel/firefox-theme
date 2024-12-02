@@ -30,7 +30,7 @@ Matrix room: [#firefox-gnome-theme:matrix.org](https://matrix.to/#/#firefox-gnom
 
 ### Firefox versions support
 
-The `master` branch of this repo supports the current Firefox stable release `132`.
+The `master` branch of this repo supports the current Firefox stable release `133`.
 
 Theme versions compatible with older Firefox releases are preserved as git tags.
 
@@ -38,12 +38,11 @@ We also have the `beta` and `nightly` branches for fixes only applicable to the 
 
 # Installation
 
-## Package managers
+The most friendly way to get this theme is using the **Add Water** app.
 
-### Arch Linux
-
-1. Install the [AUR package](https://aur.archlinux.org/packages/firefox-gnome-theme) `firefox-gnome-theme` 
-2. Follow the instructions at `cat /usr/share/doc/firefox-gnome-theme/INSTALL.md`
+<a href='https://flathub.org/apps/dev.qwery.AddWater'>
+    <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+</a>
 
 ## One command install with curl
 
@@ -124,6 +123,13 @@ If you want to checkout the theme version tag matching you Firefox version you c
 git checkout v$(firefox --version | cut -d ' ' -f 3 | cut -d '.' -f 1) # Using Firefox version
 ```
 </details>
+
+## Package managers
+
+### Arch Linux
+
+1. Install the [AUR package](https://aur.archlinux.org/packages/firefox-gnome-theme) `firefox-gnome-theme` 
+2. Follow the instructions at `cat /usr/share/doc/firefox-gnome-theme/INSTALL.md`
 
 <details>
     <summary>Manual installation</summary>
@@ -217,8 +223,6 @@ Optional features can be enabled by creating new `boolean` preferences in `about
 
 	> **Note:** You should move the new tab button out of the tabbar or it will be hidden when there is only one tab. You can rearrange the toolbars doing a right-click on any toolbar and selecting "Customize Toolbar…".
 
-	> **Note 2:** This feature doesn't work when tabs are hidden, like when using the Simple Tab Groups extension. In this case, there's no way to tell from CSS that there's only one visible tab.
-
 - **Normal width tabs** `gnomeTheme.normalWidthTabs`
 
 	Use normal width tabs as default Firefox.
@@ -278,12 +282,14 @@ Optional features can be enabled by creating new `boolean` preferences in `about
 - **OLED black theme** `gnomeTheme.oledBlack`
 
 	Change the dark theme into the black variant.
+	
+- **Show "List All Tabs" button on overflow** `gnomeTheme.allTabsButtonOnOverflow`
+
+	Show the `List All Tabs` button when the tabs bar is overflowing (when you have too many tabs that the width of the tabs no longer shrinks when new tabs are added).
 
 - **Show "List All Tabs" button** `gnomeTheme.allTabsButton`
 
 	Show the `List All Tabs` button all the time, like stock Firefox.
-	
-	> **Note:** If you like it to only show up when the tabs overflow (when you have too many tabs that the width of the tabs no longer shrinks when new tabs are added), set `browser.tabs.tabmanager.enabled` to `true` instead.
     
 - **Align tab title and icon to left** `gnomeTheme.tabAlignLeft`
 

@@ -67,6 +67,14 @@
     #tabbrowser-tabpanels {
     border-top-left-radius: 0px !important;
   }
+
+  #main-window:has(#nav-bar #new-tab-button) {
+    #sidebar-main {
+      #tabs-newtab-button {
+        visibility: hidden;
+      }
+    }
+  }
 }
 
 #sidebar-main {

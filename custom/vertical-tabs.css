@@ -1,55 +1,100 @@
-#sidebar-main {
-  border-right: 1px solid light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+#vertical-tabs {
+  --tab-collapsed-width: var(--tab-min-height);
 
-  #tabbrowser-tabs {
-    .tabbrowser-tab {
-      --tab-min-width: 0 !important;
-
-      .tab-icon-stack {
-        margin-left: 0px !important;
-      }
-
-      image.tab-close-button {
-        display: none !important;
-        margin-left: 0 !important;
-      }
-      .tab-content::before {
-        display: none;
-      }
-
-      .tab-background {
-        margin: 0 !important;
-      }
-
-      &:not([hidden="true"], [pinned]):first-of-type {
-        padding-left: 2px !important;
-
-        .tab-icon-stack {
-          width: 24px;
-        }
-      }
-    }
-
-    #tabbrowser-arrowscrollbox-periphery {
-      margin-left: 3px;
-
-      #tabs-newtab-button {
-        margin: 0 !important;
-      }
-    }
-
-    &[closebuttons="activetab"]
-      .tabbrowser-tab:not([pinned])
-      .tab-close-button {
-      display: none !important;
-    }
+  #tabbrowser-tabs[orient="vertical"] .tab-background,
+  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button,
+  #vertical-tabs-newtab-button {
+    margin-inline: 0 !important;
+    min-width: var(--tab-min-height);
+    width: 100%;
+    margin: 0 auto;
   }
-  
-  .actions-list {
-    gap: 6px;
+
+  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button {
+    display: none !important;
+  }
+
+  tab:not(:nth-child(1)) {
+    margin-top: 1px !important;
+  }
+
+  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button,
+  #vertical-tabs-newtab-button {
+    margin-top: 3px !important;
+    padding: 0 var(--tab-inline-padding) !important;
   }
 }
 
-#tabbrowser-tabbox {
-  box-shadow: none !important;
+#tabbrowser-tabpanels {
+  transition: border-radius 0.2s ease;
+  overflow: hidden;
+}
+
+#browser:has(#sidebar-main) {
+  #tabbrowser-tabbox {
+    background-color: var(--gnome-window-background);
+
+    #tabbrowser-tabpanels {
+      border-top-left-radius: 8px;
+    }
+  }
+}
+
+#sidebar-main:has([expanded]) {
+  max-width: calc(
+    var(--tab-pinned-horizontal-count) * var(--tab-pinned-min-width-expanded) +
+      2 * var(--tab-pinned-container-margin-inline-expanded) + 1px
+  ) !important;
+}
+
+@media (-moz-bool-pref: "gnomeTheme.hideSingleTab") {
+  #sidebar-main:has([expanded]) {
+    tab,
+    tab ~ toolbarbutton,
+    tab ~ #tabbrowser-arrowscrollbox-periphery,
+    #alltabs-button {
+      visibility: visible !important;
+    }
+  }
+
+  #sidebar-main:not(
+      :has(tab:not([hidden="true"]) ~ tab:not([hidden="true"]))
+    ):not(:has([expanded])) {
+    max-width: 0;
+  }
+
+  #browser:not(:has(tab:not([hidden="true"]) ~ tab:not([hidden="true"])))
+    #tabbrowser-tabpanels {
+    border-top-left-radius: 0px !important;
+  }
+}
+
+#sidebar-main {
+  max-width: var(--tab-collapsed-width);
+  transition: max-width 0.2s ease;
+  padding: 0px !important;
+
+  & > * {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+  }
+}
+
+#sidebar-main :is(.tab-icon-stack, .toolbarbutton-icon) {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+#sidebar-main:has([expanded]) .actions-list .button-background img {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#sidebar-main .actions-list .button-background img {
+  margin-left: -1px;
+}
+
+:root {
+  --tab-close-button-padding: 8px;
 }

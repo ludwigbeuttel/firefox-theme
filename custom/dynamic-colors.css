@@ -1,0 +1,91 @@
+:root {
+  --toolbarbutton-icon-fill: var(--lwt-text-color) !important;
+  --gnome-toolbar-icon-fill: var(--lwt-text-color) !important;
+  --gnome-window-color: var(--lwt-text-color) !important;
+  --gnome-menu-background: var(--lwt-accent-color) !important;
+  --gnome-toolbar-background: var(--lwt-accent-color) !important;
+  --gnome-toolbar-border-color: var(--lwt-accent-color) !important;
+  --gnome-accent-bg: var(--lwt-accent-color) !important;
+  --gnome-selection-bg: color-mix(
+    in hsl longer hue,
+    var(--lwt-text-color) 20%,
+    transparent
+  ) !important;
+  --gnome-window-background: var(--lwt-accent-color) !important;
+
+  --gnome-tabbar-tab-active-background: var(--gnome-selection-bg) !important;
+  --gnome-tabbar-tab-hover-background: var(--gnome-selection-bg) !important;
+  --gnome-tabbar-tab-active-hover-background: color-mix(
+    in hsl longer hue,
+    var(--lwt-text-color) 30%,
+    transparent
+  ) !important;
+
+  --lwt-transition-duration: 0.2s;
+  --lwt-transition-type: ease-out;
+}
+
+* {
+  color: --lwt-tab-text !important;
+}
+
+#navigator-toolbox {
+  --toolbar-start-end-padding: 1px;
+}
+
+.toolbarbutton-icon {
+  transition-property: opacity !important;
+  transition-duration: var(--lwt-transition-duration) !important;
+  transition-timing-function: var(--lwt-transition-type) !important;
+}
+
+#navigator-toolbox {
+  transition-property: background-color, border-color !important;
+  transition-duration: var(--lwt-transition-duration) !important;
+  transition-timing-function: var(--lwt-transition-type) !important;
+}
+
+#nav-bar,
+#nav-bar .urlbarView-body-outer,
+.toolbar-items {
+  background: unset !important;
+  background-color: var(
+    --lwt-accent-color,
+    --gnome-headerbar-background
+  ) !important;
+  transition: background-color var(--lwt-transition-duration)
+    var(--lwt-transition-type) !important;
+}
+
+#urlbar {
+  :is(#translations-button, #shopping-sidebar-button, #reader-mode-button) {
+    display: none !important;
+  }
+}
+
+#alltabs-button {
+  transition-property: background, max-width, margin, padding !important;
+  transition-duration: 0.2s !important;
+  transition-delay: 0.2s !important;
+  transition-timing-function: ease;
+}
+
+#sidebar-main,
+#sidebar-box {
+  background-color: var(--lwt-accent-color) !important;
+}
+
+.tab-icon-overlay {
+  background-color: transparent !important;
+  top: 6px !important;
+}
+
+.button-background,
+.tab-background,
+#tabs-newtab-button,
+#vertical-tabs-newtab-button {
+  box-shadow: none !important;
+  transition-property: background-color, outline-color, color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}

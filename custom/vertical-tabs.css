@@ -47,7 +47,11 @@
   ) !important;
 }
 
-@media (-moz-bool-pref: "gnomeTheme.hideSingleTab") {
+.expanded-button {
+  padding-left: 2px;
+}
+
+@media (-moz-bool-pref: "gnomeTheme.hideSingleTab") and (-moz-bool-pref: "sidebar.verticalTabs") {
   #sidebar-main:has([expanded]) {
     tab,
     tab ~ toolbarbutton,
@@ -60,10 +64,12 @@
   #sidebar-main:not(
       :has(tab:not([hidden="true"]) ~ tab:not([hidden="true"]))
     ):not(:has([expanded])) {
-    max-width: 0;
+    max-width: 0 !important;
   }
 
-  #browser:not(:has(tab:not([hidden="true"]) ~ tab:not([hidden="true"])))
+  #browser:not(:has(tab:not([hidden="true"]) ~ tab:not([hidden="true"]))):not(
+      #sidebar-main:has([expanded])
+    )
     #tabbrowser-tabpanels {
     border-top-left-radius: 0px !important;
   }

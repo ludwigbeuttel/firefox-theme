@@ -83,6 +83,14 @@
   }
 }
 
+#main-window[sizemode="fullscreen"] #sidebar-main {
+  max-width: 1px !important;
+
+  &:hover {
+    max-width: var(--tab-collapsed-width) !important;
+  }
+}
+
 #sidebar-main {
   max-width: var(--tab-collapsed-width);
   transition: max-width 0.2s ease;

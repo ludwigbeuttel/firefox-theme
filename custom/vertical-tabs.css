@@ -1,56 +1,3 @@
-#vertical-tabs {
-  --tab-collapsed-width: var(--tab-min-height);
-
-  #tabbrowser-tabs[orient="vertical"] .tab-background,
-  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button,
-  #vertical-tabs-newtab-button {
-    margin-inline: 0 !important;
-    min-width: var(--tab-min-height);
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button {
-    display: none !important;
-  }
-
-  tab:not(:nth-child(1)) {
-    margin-top: 1px !important;
-  }
-
-  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button,
-  #vertical-tabs-newtab-button {
-    margin-top: 3px !important;
-    padding: 0 var(--tab-inline-padding) !important;
-  }
-}
-
-#tabbrowser-tabpanels {
-  transition: border-radius 0.2s ease;
-  overflow: hidden;
-}
-
-#browser:has(#sidebar-main) {
-  #tabbrowser-tabbox {
-    background-color: var(--gnome-window-background);
-
-    #tabbrowser-tabpanels {
-      border-top-left-radius: 8px;
-    }
-  }
-}
-
-#sidebar-main:has([expanded]) {
-  max-width: calc(
-    var(--tab-pinned-horizontal-count) * var(--tab-pinned-min-width-expanded) +
-      2 * var(--tab-pinned-container-margin-inline-expanded) + 1px
-  ) !important;
-}
-
-.expanded-button {
-  padding-left: 2px;
-}
-
 @media (-moz-bool-pref: "gnomeTheme.hideSingleTab") and (-moz-bool-pref: "sidebar.verticalTabs") {
   #sidebar-main:has([expanded]) {
     tab,
@@ -83,40 +30,11 @@
   }
 }
 
-#main-window[sizemode="fullscreen"] #sidebar-main {
-  max-width: 1px !important;
+#sidebar-main:not(:has([expanded])) {
+  --tab-collapsed-width: 46px;
+  --tab-inner-inline-margin: 6px;
 
-  &:hover {
-    max-width: var(--tab-collapsed-width) !important;
+  .tab-close-button {
+    visibility: hidden;
   }
-}
-
-#sidebar-main {
-  max-width: var(--tab-collapsed-width);
-  transition: max-width 0.2s ease;
-  padding: 0px !important;
-
-  & > * {
-    padding-left: 6px;
-    padding-right: 6px;
-    padding-bottom: 6px;
-  }
-}
-
-#sidebar-main :is(.tab-icon-stack, .toolbarbutton-icon) {
-  margin-left: 1px;
-  margin-right: 1px;
-}
-
-#sidebar-main:has([expanded]) .actions-list .button-background img {
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-#sidebar-main .actions-list .button-background img {
-  margin-left: -1px;
-}
-
-:root {
-  --tab-close-button-padding: 8px;
 }
